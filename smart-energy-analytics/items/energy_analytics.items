@@ -1,0 +1,11 @@
+Group PowerConsumption
+Group TemperatureSensor
+
+// Датчики енергоспоживання
+Number LivingRoom_Power "Споживання Вітальня [W]" (PowerConsumption)
+Number Kitchen_Power "Споживання Кухня [W]" (PowerConsumption)
+
+// Аналітичні Items (результати розрахунків правил)
+Number Total_Power "Сумарне поточне споживання [W]"
+Number Average_Hourly_Power "Середнє годинне споживання [W]"
+Number Max_Daily_Power "Максимальне споживання за день [W]"

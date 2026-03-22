@@ -1,0 +1,12 @@
+// Стратегія збереження даних кожну хвилину та при зміні стану
+Strategies {
+    everyMinute : "0 * * * * ?"
+    everyHour   : "0 0 * * * ?"
+    default = everyChange
+}
+
+Items {
+    // Зберігаємо всі дані про споживання та температуру
+    PowerConsumption* : strategy = everyChange, everyMinute
+    TemperatureSensor* : strategy = everyChange, everyMinute
+}

@@ -1,0 +1,16 @@
+sitemap analytics_dashboard label "Панель аналітики енергії" {
+    Frame label "Поточні показники" {
+        Text item=LivingRoom_Power icon="energy"
+        Text item=Kitchen_Power icon="energy"
+        Text item=Total_Power icon="sum" label="Загальне споживання [%.1f W]"
+    }
+
+    Frame label "Аналітика та тренди (Графіки)" {
+        Text item=Average_Hourly_Power label="Середнє за годину [%.1f W]"
+        Text item=Max_Daily_Power label="Пік за добу [%.1f W]"
+        
+        // Візуалізація часових рядів (Time-series charts)
+        Chart item=PowerConsumption period=h refresh=60000 service="rrd4j"
+        Chart item=LivingRoom_Power period=D refresh=3600000 service="rrd4j"
+    }
+}

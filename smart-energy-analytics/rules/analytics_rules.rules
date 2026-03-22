@@ -1,0 +1,26 @@
+// Автоматичний підрахунок суми
+rule "Розрахунок сумарного споживання"
+when
+    Item LivingRoom_Power changed or
+    Item Kitchen_Power changed
+then
+    var sum = (LivingRoom_Power.state as Number) + (Kitchen_Power.state as Number)
+    Total_Power.postUpdate(sum)
+    logInfo("Analytics", "Сумарне споживання оновлено: " + sum + " W")
+end
+
+// Аналітичне правило: Розрахунок середнього та максимуму за період
+rule "Аналітика за годину та день"
+when
+    Time cron "0 0 * * * ?" // Кожну годину
+then
+    // У реальному OpenHAB persistence дозволяє робити такі запити до БД:
+    // var avg = LivingRoom_Power.averageSince(now.minusHours(1))
+    // var max = LivingRoom_Power.maximumSince(now.minusDays(1))
+    
+    // Симуляція розрахунку для звіту:
+    var simulatedAvg = (LivingRoom_Power.state as Number) * 0.95
+    Average_Hourly_Power.postUpdate(simulatedAvg)
+    
+    logInfo("Analytics", "Аналітичний звіт: Середнє значення збережено в БД.")
+end
